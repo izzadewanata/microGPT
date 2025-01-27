@@ -1,6 +1,7 @@
 /* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
+/* General Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -11,17 +12,15 @@
 :root {
   /* Dark mode colors */
   --text-color: #ffffff;
-  --subheading-color: #d5bdaf;
   --placeholder-color: #f4f3ee;
-  --primary-color: #463f3a;
-  --secondary-color: #d5bdaf;
-  --secondary-hover-color: #ddbea9;
+  --primary-color: #001331;
+  --secondary-color: #FFD662;
+  --secondary-hover-color: #947600;
 }
 
 .light_mode {
   /* Light mode colors */
   --text-color: #222;
-  --subheading-color: #A0A0A0;
   --placeholder-color: #6C6C6C;
   --primary-color: #FFF;
   --secondary-color: #E9EEF6;
@@ -32,96 +31,66 @@ body {
   background: var(--primary-color);
 }
 
-.header, .chat-list .message, .typing-form {
-  margin: 0 auto;
-  max-width: 980px;
+/* Header Styles */
+.title-header {
+  background-color: #00B2CA;
+  padding: 20px;
+  text-align: center;
+  color: black;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke: 1px black;
 }
 
-.header {
-  margin-top: 6vh;
-  padding: 1rem;
-  overflow-x: hidden;
+/* Front Page Container */
+.front-container {
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 20px;
+  text-align: center;
+  color: var(--text-color);
+  gap: 1rem;
 }
 
-body.hide-header .header {
+.front-container .bg-container {
+  flex: 1;
+  max-width: 50%;
+}
+
+.front-container .bg-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.front-container .user-guide {
+  flex: 1;
+  max-width: 45%;
+  padding-bottom: 30px;
+}
+
+.front-container .user-guide .title-ug {
+  padding-bottom: 5px;
+}
+
+/* Hide Header or Front Page */
+body.hide-header .header,
+body.hide-header .front-page {
   margin: 0;
   display: none;
 }
 
-.header :where(.title, .subtitle) {
-  color: var(--text-color);
-  font-weight: 500;
-  line-height: 4rem;
-}
-
-.header .title {
-  width: fit-content;
-  font-size: 3rem;
-  background-clip: text;
-  background: linear-gradient(to right, #4285f4, #d96570);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.header .subtitle {
-  font-size: 2.6rem;
-  color: var(--subheading-color);
-}
-
-.suggestion-list {
-  width: 100%;
-  list-style: none;
-  display: flex;
-  gap: 1.25rem;
-  margin-top: 9.5vh;
-  overflow: hidden;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-
-.suggestion-list .suggestion {
-  cursor: pointer;
-  padding: 1.25rem;
-  width: 222px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  border-radius: 0.75rem;
-  justify-content: space-between;
-  background: var(--secondary-color);
-  transition: 0.2s ease;
-}
-
-.suggestion-list .suggestion:hover {
-  background: var(--secondary-hover-color);
-}
-
-.suggestion-list .suggestion :where(.text, .icon) {
-  font-weight: 400;
-  color: var(--text-color);
-}
-
-.suggestion-list .suggestion .icon {
-  width: 42px;
-  height: 42px;
-  display: flex;
-  font-size: 1.3rem;
-  margin-top: 2.5rem;
-  align-self: flex-end;
-  align-items: center;
-  border-radius: 50%;
-  justify-content: center;
-  color: var(--text-color);
-  background: var(--primary-color);
-}
-
+/* Chat List */
 .chat-list {
   padding: 2rem 1rem 12rem;
   max-height: 100vh;
   overflow-y: auto;
-  scrollbar-color: #999 transparent;
+}
+
+.chat-list .message {
+  margin: 0 auto;
+  max-width: 980px;
 }
 
 .chat-list .message.incoming {
@@ -160,12 +129,7 @@ body.hide-header .header {
   animation: rotate 3s linear infinite;
 }
 
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
+/* Hover Icon Visibility */
 .chat-list .message .icon {
   color: var(--text-color);
   cursor: pointer;
@@ -185,7 +149,7 @@ body.hide-header .header {
   visibility: hidden;
 }
 
-.chat-list .message:not(.loading, .error):hover .icon:not(.hide){
+.chat-list .message:not(.loading, .error):hover .icon:not(.hide) {
   visibility: visible;
 }
 
@@ -193,6 +157,7 @@ body.hide-header .header {
   background: var(--secondary-hover-color);
 }
 
+/* Loading Indicator */
 .chat-list .message .loading-indicator {
   display: none;
   gap: 0.8rem;
@@ -217,23 +182,33 @@ body.hide-header .header {
   width: 70%;
 }
 
+/* Keyframes */
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes loading {
   0% {
     background-position: -800px 0;
   }
-
   100% {
     background-position: 800px 0;
   }
 }
 
+/* Typing Area */
 .typing-area {
   position: fixed;
-  width: 100%;
-  left: 0;
   bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1000px;
   padding: 1rem;
   background: var(--primary-color);
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visual separation */
 }
 
 .typing-area :where(.typing-form, .action-buttons) {
@@ -255,7 +230,6 @@ body.hide-header .header {
   outline: none;
   resize: none;
   font-size: 1rem;
-  color: var(--text-color);
   padding: 1.1rem 4rem 1.1rem 1.5rem;
   border-radius: 100px;
   background: var(--secondary-color);
@@ -276,7 +250,7 @@ body.hide-header .header {
   cursor: pointer;
   border-radius: 50%;
   display: flex;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   color: var(--text-color);
   align-items: center;
   justify-content: center;
@@ -309,36 +283,16 @@ body.hide-header .header {
   color: var(--placeholder-color);
 }
 
-/* Responsive media query code for small screen */
-@media (max-width: 768px) {
-  .header :is(.title, .subtitle) {
-    font-size: 2rem;
-    line-height: 2.6rem;
-  }
 
-  .header .subtitle {
-    font-size: 1.7rem;
+/* Responsive Styling */
+@media screen and (max-width: 768px) {
+  .front-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
-
-  .typing-area :where(.typing-form, .action-buttons) {
-    gap: 0.4rem;
-  }
-
-  .typing-form .input-wrapper {
-    height: 50px;
-  }
-
-  .typing-form .typing-input {
-    padding: 1.1rem 3.5rem 1.1rem 1.2rem;
-  }
-
-  .typing-area .icon {
-    height: 50px;
-    width: 50px;
-  }
-
-  .typing-area .disclaimer-text {
-    font-size: 0.75rem;
-    margin-top: 0.5rem;
+  .front-container .bg-container,
+  .front-container .user-guide {
+    max-width: 100%;
   }
 }
