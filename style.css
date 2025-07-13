@@ -1,298 +1,491 @@
 /* Import Google Font - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* General Reset and Base Styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 :root {
-  /* Dark mode colors */
-  --text-color: #ffffff;
-  --placeholder-color: #f4f3ee;
-  --primary-color: #001331;
-  --secondary-color: #FFD662;
-  --secondary-hover-color: #947600;
+    /* Dark mode colors */
+    --text-color: #e0e0e0; /* Softer white for better readability */
+    --placeholder-color: #a0a0a0; /* Slightly darker for better contrast */
+    --primary-color: #1a1a2e; /* Deeper, richer background */
+    --secondary-color: #2e3b55; /* Complementary background for input/buttons */
+    --secondary-hover-color: #3e4d6d; /* Darker hover state */
+    --accent-color: #00b2ca; /* Your existing header color, used more broadly */
+    --error-color: #ff6b6b; /* Clear error indication */
+    --border-color: rgba(255, 255, 255, 0.1); /* Subtle borders */
+    --box-shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 .light_mode {
-  /* Light mode colors */
-  --text-color: #222;
-  --placeholder-color: #6C6C6C;
-  --primary-color: #FFF;
-  --secondary-color: #E9EEF6;
-  --secondary-hover-color: #DBE1EA;
+    /* Light mode colors */
+    --text-color: #333333;
+    --placeholder-color: #757575;
+    --primary-color: #f0f2f5; /* Light, clean background */
+    --secondary-color: #ffffff; /* White elements */
+    --secondary-hover-color: #e0e0e0; /* Light gray hover */
+    --accent-color: #00b2ca;
+    --error-color: #e55865;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --box-shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
-  background: var(--primary-color);
+    background: var(--primary-color);
+    line-height: 1.6; /* Improved readability */
+    font-size: 16px; /* Base font size */
+    color: var(--text-color);
 }
 
 /* Header Styles */
+.header {
+    background-color: var(--accent-color); /* Using a variable for consistency */
+    padding: 1.5rem 1rem; /* Responsive padding */
+    text-align: center;
+    color: #ffffff; /* White text on accent background */
+    box-shadow: 0 4px 8px var(--box-shadow-color); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for header hide */
+}
+
 .title-header {
-  background-color: #00B2CA;
-  padding: 20px;
-  text-align: center;
-  color: black;
-  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-  -webkit-text-stroke: 1px black;
+    font-size: 2.2rem; /* Larger, more impactful title */
+    font-weight: 700; /* Bolder */
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow for depth */
 }
 
 /* Front Page Container */
 .front-container {
-  display: flex;
-  align-items: center;
-  max-width: 1000px;
-  margin: 30px auto;
-  padding: 0 20px;
-  text-align: center;
-  color: var(--text-color);
-  gap: 1rem;
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    align-items: center;
+    max-width: 1100px; /* Slightly wider max-width */
+    margin: 3rem auto; /* More vertical margin */
+    padding: 0 1.5rem; /* Consistent padding */
+    gap: 2rem; /* Increased gap */
+    text-align: left; /* Align text to left for better reading flow */
 }
 
 .front-container .bg-container {
-  flex: 1;
-  max-width: 50%;
+    flex: 1;
+    min-width: 300px; /* Ensure image doesn't get too small */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .front-container .bg-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 8px 16px var(--box-shadow-color); /* More pronounced shadow */
+    transition: transform 0.3s ease; /* Hover effect */
+}
+
+.front-container .bg-container img:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
 }
 
 .front-container .user-guide {
-  flex: 1;
-  max-width: 45%;
-  padding-bottom: 30px;
+    flex: 1;
+    min-width: 300px; /* Ensure text block doesn't get too small */
+    padding: 1.5rem;
+    background: var(--secondary-color); /* Background for text section */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--box-shadow-color);
+    color: var(--text-color);
 }
 
 .front-container .user-guide .title-ug {
-  padding-bottom: 5px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--accent-color); /* Accent color for sub-title */
+}
+
+.front-container .user-guide p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.front-container .user-guide a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.front-container .user-guide a:hover {
+    color: var(--secondary-hover-color);
+    text-decoration: underline;
 }
 
 /* Hide Header or Front Page */
-body.hide-header .header,
-body.hide-header .front-page {
-  margin: 0;
-  display: none;
+body.hide-header .header {
+    transform: translateY(-100%); /* Slide header up and out */
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+    margin: 0;
 }
 
 /* Chat List */
 .chat-list {
-  padding: 2rem 1rem 12rem;
-  max-height: 100vh;
-  overflow-y: auto;
+    padding: 2rem 1.5rem 12rem; /* More balanced padding */
+    max-height: calc(100vh - 80px); /* Adjust max-height to account for header/footer */
+    overflow-y: auto;
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+.chat-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-list::-webkit-scrollbar-track {
+    background: var(--primary-color);
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+    background: var(--secondary-hover-color);
+    border-radius: 4px;
 }
 
 .chat-list .message {
-  margin: 0 auto;
-  max-width: 980px;
+    margin: 0 auto 1.5rem; /* Consistent bottom margin */
+    max-width: 980px;
+    display: flex;
+    align-items: flex-start; /* Align messages to the top */
+    gap: 1rem;
 }
 
 .chat-list .message.incoming {
-  margin-top: 1.5rem;
+    justify-content: flex-start;
+}
+
+.chat-list .message.outgoing {
+    justify-content: flex-end;
 }
 
 .chat-list .message .message-content {
-  display: flex;
-  gap: 1.5rem;
-  width: 100%;
-  align-items: center;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    align-items: flex-start; /* Align message content to start */
+    background: var(--secondary-color);
+    padding: 1rem 1.2rem;
+    border-radius: 18px; /* Softer rounded corners */
+    box-shadow: 0 2px 5px var(--box-shadow-color);
+    transition: all 0.2s ease;
+}
+
+.chat-list .message.outgoing .message-content {
+    background: var(--accent-color);
+    color: #ffffff;
 }
 
 .chat-list .message .text {
-  color: var(--text-color);
-  white-space: pre-wrap;
+    color: var(--text-color);
+    white-space: pre-wrap;
+    word-break: break-word; /* Prevent long words from overflowing */
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.chat-list .message.outgoing .text {
+    color: #ffffff;
 }
 
 .chat-list .message.error .text {
-  color: #e55865;
+    color: var(--error-color); /* Consistent error color */
+    font-weight: 500;
 }
 
 .chat-list .message.loading .text {
-  display: none;
+    display: none;
 }
 
 .chat-list .message .avatar {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
-  align-self: flex-start;
+    width: 38px; /* Slightly smaller, refined avatar size */
+    height: 38px;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0; /* Prevent avatar from shrinking */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .chat-list .message.loading .avatar {
-  animation: rotate 3s linear infinite;
+    animation: rotate 2s linear infinite; /* Slightly faster rotation */
 }
 
 /* Hover Icon Visibility */
 .chat-list .message .icon {
-  color: var(--text-color);
-  cursor: pointer;
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  font-size: 1.25rem;
-  margin-left: 3.5rem;
-  visibility: hidden;
+    color: var(--placeholder-color); /* More subtle color for icons */
+    cursor: pointer;
+    height: 32px; /* Smaller icon size */
+    width: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    font-size: 1.1rem;
+    margin-left: 0.5rem; /* Closer to the message bubble */
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease;
 }
 
 .chat-list .message .icon.hide {
-  visibility: hidden;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .chat-list .message:not(.loading, .error):hover .icon:not(.hide) {
-  visibility: visible;
+    visibility: visible;
+    opacity: 1;
 }
 
 .chat-list .message .icon:hover {
-  background: var(--secondary-hover-color);
+    background: var(--secondary-hover-color);
+    color: var(--text-color);
 }
 
 /* Loading Indicator */
 .chat-list .message .loading-indicator {
-  display: none;
-  gap: 0.8rem;
-  width: 100%;
-  flex-direction: column;
+    display: none;
+    gap: 0.6rem; /* Smaller gap */
+    width: 100%;
+    flex-direction: column;
 }
 
 .chat-list .message.loading .loading-indicator {
-  display: flex;
+    display: flex;
 }
 
 .chat-list .message .loading-indicator .loading-bar {
-  height: 11px;
-  width: 100%;
-  border-radius: 0.135rem;
-  background-position: -800px 0;
-  background: linear-gradient(to right, #4285f4, var(--primary-color), #4285f4);
-  animation: loading 3s linear infinite;
+    height: 8px; /* Thinner bars */
+    width: 100%;
+    border-radius: 4px;
+    background: linear-gradient(to right, #4285f4, var(--primary-color), #4285f4);
+    animation: loading 2s linear infinite; /* Faster animation */
+    background-size: 200% 100%; /* Ensure full gradient sweep */
 }
 
 .chat-list .message .loading-indicator .loading-bar:last-child {
-  width: 70%;
+    width: 70%;
 }
 
 /* Keyframes */
 @keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes loading {
-  0% {
-    background-position: -800px 0;
-  }
-  100% {
-    background-position: 800px 0;
-  }
+    0% {
+        background-position: -200% 0; /* Start further left */
+    }
+    100% {
+        background-position: 200% 0; /* End further right */
+    }
 }
 
 /* Typing Area */
 .typing-area {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1000px;
-  padding: 1rem;
-  background: var(--primary-color);
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visual separation */
+    position: fixed;
+    bottom: 0;
+    left: 0; /* Full width */
+    width: 100%;
+    max-width: 100%; /* Occupy full width on smaller screens */
+    padding: 1rem 1.5rem; /* Consistent padding */
+    background: var(--primary-color);
+    box-shadow: 0 -4px 10px var(--box-shadow-color); /* Stronger shadow for separation */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid var(--border-color); /* Subtle border top */
 }
 
-.typing-area :where(.typing-form, .action-buttons) {
-  display: flex;
-  gap: 0.75rem;
+.typing-area .typing-form {
+    width: 100%;
+    max-width: 1000px; /* Limit form width */
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
 }
 
 .typing-form .input-wrapper {
-  width: 100%;
-  height: 56px;
-  display: flex;
-  position: relative;
+    width: 100%;
+    height: 52px; /* Slightly smaller input height */
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .typing-form .typing-input {
-  height: 100%;
-  width: 100%;
-  border: none;
-  outline: none;
-  resize: none;
-  font-size: 1rem;
-  padding: 1.1rem 4rem 1.1rem 1.5rem;
-  border-radius: 100px;
-  background: var(--secondary-color);
+    height: 100%;
+    width: 100%;
+    border: 1px solid var(--border-color); /* Subtle border */
+    outline: none;
+    resize: none;
+    font-size: 1rem;
+    padding: 0.8rem 3.5rem 0.8rem 1.2rem; /* Adjusted padding for icon */
+    border-radius: 28px; /* More modern, softer pill shape */
+    background: var(--secondary-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
 }
 
 .typing-form .typing-input:focus {
-  background: var(--secondary-hover-color);
+    background: var(--secondary-hover-color);
+    border-color: var(--accent-color); /* Highlight border on focus */
+    box-shadow: 0 0 0 3px rgba(0, 178, 202, 0.2); /* Soft focus glow */
 }
 
 .typing-form .typing-input::placeholder {
-  color: var(--placeholder-color);
+    color: var(--placeholder-color);
+    opacity: 0.8; /* Slightly less opaque */
 }
 
 .typing-area .icon {
-  width: 56px;
-  height: 56px;
-  flex-shrink: 0;
-  cursor: pointer;
-  border-radius: 50%;
-  display: flex;
-  font-size: 1.8rem;
-  color: var(--text-color);
-  align-items: center;
-  justify-content: center;
-  background: var(--secondary-color);
-  transition: 0.2s ease;
+    width: 48px; /* Slightly smaller icon buttons */
+    height: 48px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-color); /* Accent color for action buttons */
+    transition: background 0.2s ease, transform 0.2s ease;
+    border: none; /* Remove default button border */
 }
 
 .typing-area .icon:hover {
-  background: var(--secondary-hover-color);
+    background: var(--secondary-hover-color);
+    transform: translateY(-2px); /* Subtle lift on hover */
 }
 
 .typing-form #send-message-button {
-  position: absolute;
-  right: 0;
-  outline: none;
-  border: none;
-  transform: scale(0);
-  background: transparent;
-  transition: transform 0.2s ease;
+    position: absolute;
+    right: 0.5rem; /* Closer to the right edge */
+    background: transparent; /* Make send button transparent */
+    color: var(--accent-color); /* Accent color for send button */
+    font-size: 1.8rem;
+    height: 40px; /* Adjust size for just the icon */
+    width: 40px;
+    transform: scale(0.8); /* Start slightly scaled down */
+    opacity: 0; /* Start hidden */
 }
 
 .typing-form .typing-input:valid ~ #send-message-button {
-  transform: scale(1);
+    transform: scale(1);
+    opacity: 1; /* Fade in */
+}
+
+.typing-form .action-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-left: 1rem; /* Space from input */
 }
 
 .typing-area .disclaimer-text {
-  text-align: center;
-  font-size: 0.85rem;
-  margin-top: 1rem;
-  color: var(--placeholder-color);
+    text-align: center;
+    font-size: 0.75rem; /* Slightly smaller for disclaimer */
+    margin-top: 0.8rem; /* Reduced top margin */
+    color: var(--placeholder-color);
+    max-width: 1000px;
 }
-
 
 /* Responsive Styling */
 @media screen and (max-width: 768px) {
-  .front-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  .front-container .bg-container,
-  .front-container .user-guide {
-    max-width: 100%;
-  }
+    .front-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+        margin: 2rem auto;
+    }
+    .front-container .bg-container,
+    .front-container .user-guide {
+        max-width: 100%;
+        min-width: unset; /* Remove min-width for mobile */
+    }
+    .front-container .user-guide {
+        padding: 1.2rem;
+    }
+
+    .header {
+        padding: 1rem 0.8rem;
+    }
+    .title-header {
+        font-size: 1.8rem;
+    }
+
+    .chat-list {
+        padding: 1.5rem 1rem 10rem; /* Adjusted padding for smaller screens */
+    }
+
+    .chat-list .message .avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .chat-list .message .icon {
+        height: 28px;
+        width: 28px;
+        font-size: 1rem;
+    }
+
+    .typing-area {
+        padding: 0.8rem 1rem;
+    }
+    .typing-form .input-wrapper {
+        height: 48px; /* Smaller input on mobile */
+    }
+    .typing-form .typing-input {
+        padding: 0.7rem 3rem 0.7rem 1rem;
+        font-size: 0.95rem;
+    }
+    .typing-area .icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+    }
+    .typing-form #send-message-button {
+        right: 0.3rem;
+    }
+    .typing-form .action-buttons {
+        margin-left: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .title-header {
+        font-size: 1.5rem;
+    }
+    .front-container .user-guide .title-ug {
+        font-size: 1.5rem;
+    }
+    .typing-area .typing-form {
+        flex-wrap: wrap; /* Allow buttons to wrap below input */
+        justify-content: center;
+    }
+    .typing-area .action-buttons {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+        margin-left: 0;
+    }
+    .typing-area .disclaimer-text {
+        font-size: 0.7rem;
+    }
 }
