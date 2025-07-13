@@ -303,7 +303,7 @@ body.hide-header .header {
     bottom: 0;
     left: 0; /* Full width */
     width: 100%;
-    max-width: 100%; /* Occupy full width on smaller screens */
+    /* Removed max-width here, let media queries handle it or parent container */
     padding: 1rem 1.5rem; /* Consistent padding */
     background: var(--primary-color);
     box-shadow: 0 -4px 10px var(--box-shadow-color); /* Stronger shadow for separation */
@@ -311,6 +311,8 @@ body.hide-header .header {
     flex-direction: column;
     align-items: center;
     border-top: 1px solid var(--border-color); /* Subtle border top */
+    /* Add min-height to ensure it always has space for the input */
+    min-height: 80px; /* Adjust as needed to fit input and buttons comfortably */
 }
 
 .typing-area .typing-form {
@@ -398,13 +400,16 @@ body.hide-header .header {
     margin-left: 1rem; /* Space from input */
 }
 
+/* Hide disclaimer-text by default */
 .typing-area .disclaimer-text {
+    display: none; /* Hidden by default */
     text-align: center;
     font-size: 0.75rem; /* Slightly smaller for disclaimer */
     margin-top: 0.8rem; /* Reduced top margin */
     color: var(--placeholder-color);
     max-width: 1000px;
 }
+
 
 /* Responsive Styling */
 @media screen and (max-width: 768px) {
@@ -431,7 +436,8 @@ body.hide-header .header {
     }
 
     .chat-list {
-        padding: 1.5rem 1rem 10rem; /* Adjusted padding for smaller screens */
+        /* Adjust padding-bottom to account for the flexible typing-area */
+        padding: 1.5rem 1rem calc(80px + 1rem); /* Roughly 80px for typing area + some padding */
     }
 
     .chat-list .message .avatar {
@@ -447,6 +453,7 @@ body.hide-header .header {
 
     .typing-area {
         padding: 0.8rem 1rem;
+        min-height: 70px; /* Reduce min-height for smaller screens */
     }
     .typing-form .input-wrapper {
         height: 48px; /* Smaller input on mobile */
@@ -465,6 +472,11 @@ body.hide-header .header {
     }
     .typing-form .action-buttons {
         margin-left: 0.5rem;
+    }
+
+    /* For screens below 768px, ensure disclaimer is hidden */
+    .typing-area .disclaimer-text {
+        display: none;
     }
 }
 
@@ -485,7 +497,15 @@ body.hide-header .header {
         margin-top: 0.5rem;
         margin-left: 0;
     }
+    /* Disclaimer text remains hidden */
     .typing-area .disclaimer-text {
-        font-size: 0.7rem;
+        display: none;
+    }
+}
+
+/* You can optionally show disclaimer text on larger screens if desired */
+@media screen and (min-width: 769px) {
+    .typing-area .disclaimer-text {
+        display: block; /* Show disclaimer on larger screens */
     }
 }
